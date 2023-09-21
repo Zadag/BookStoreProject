@@ -10,8 +10,8 @@ function App() {
       <Routes>
         <Route path="/search" Component={Search} />
         <Route path="/book/:bookId" Component={BookDetails} />
-        <Route path="/bookshelf" element={<Bookshelf />} />
-        <Route path="/" element={<SignIn />} />
+        <Route path="/bookshelf" Component={Bookshelf} />
+        <Route path="/" Component={SignIn} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,6 +1,7 @@
 import { resolve } from "path";
 import { existsSync } from "fs";
 import express, { Request, Response, NextFunction } from "express";
+const cors = require("cors");
 
 import authRouter from "./routes/authRouter";
 import bookshelfRouter from "./routes/bookshelfRouter";
@@ -10,7 +11,7 @@ import bookRouter from "./routes/bookRouter";
 import fileNotFoundError from "./errors/fileNotFound";
 
 const app = express();
-
+app.use(cors());
 app.use(express.json());
 
 // Error handler
