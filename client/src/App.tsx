@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SignIn from "./components/SignIn";
-import Search from "./components/Search";
-import BookDetails from "./components/BookDetails";
-import Bookshelf from "./components/Bookshelf";
+import SignIn from "./components/Signin/SignIn";
+import Search from "./components/Search/Search";
+import BookDetails from "./components/BookDetails/BookDetails";
+import Bookshelf from "./components/Bookshelf/Bookshelf";
 
 function App() {
   return (

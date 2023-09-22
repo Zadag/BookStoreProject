@@ -1,5 +1,6 @@
-import { ChangeEvent, FormEvent, useState } from "react";
-import axios from "axios";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 type SingInData = {
   username: string;
@@ -7,6 +8,8 @@ type SingInData = {
 };
 
 const SignIn: React.FC = () => {
+  const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
   const [formData, setFormData] = useState<SingInData>({
     username: "",
     password: "",
@@ -20,34 +23,13 @@ const SignIn: React.FC = () => {
 
   const verifyCredentials = async () => {
     const { username, password } = formData;
-    axios
-      .request({
-        method: "POST",
-
-        url: "http://localhost:3001/api/signin",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        data: { username, password },
-      })
-      .then((response) => {
-        // The token will be somewhere within the response
-        console.log(response.data.token); // e.g.
-      })
-      .catch((error) => {
-        console.error(error);
-        if (error.response && error.response.status === 401) {
-          console.log("Invalid username or password");
-          setErrorMessage("Invalid username or password");
-        }
-      });
+    const response = await login({ username, password });
+    if (response === "success") navigate("/bookshelf");
+    else setErrorMessage(response);
   };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    // Here, you can add code to handle the form submission, such as sending the data to a server or performing client-side validation.
-    console.log("Username:", formData.username);
-    console.log("Password:", formData.password);
     verifyCredentials();
   };
 
