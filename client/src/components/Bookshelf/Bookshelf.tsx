@@ -81,7 +81,11 @@ const Bookshelf = () => {
 
   return (
     <>
-      <h1>Welcome to bookshelf</h1>
+      <div id="header">
+        <h1>Welcome to bookshelf</h1>
+        <button onClick={() => navigate("/search")}>Search</button>
+      </div>
+
       <h2>Want to read</h2>
       <div id="want-to-read" className="bookshelf">
         {books?.wantToRead.map((book) => {

@@ -3,12 +3,13 @@ import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { BookType } from "../Book/Book";
+import { useNavigate } from "react-router-dom";
 
 type SearchBookType = {
   id: string;
   title: string;
   authors: string;
-  imageLinks: { smallThumbnail: string; thumbnail: string };
+  imageLinks: { smallThumbnail?: string; thumbnail?: string };
   addBook: (bookId: string) => {};
 };
 
@@ -32,6 +33,7 @@ const SearchBook = ({
 };
 
 const Search = () => {
+  const navigate = useNavigate();
   const { token } = useContext(AuthContext);
   const [searchInput, setSearchInput] = useState<string>();
   const [searchedBooks, setSearchedBooks] = useState<BookType[]>();
@@ -74,6 +76,7 @@ const Search = () => {
   return (
     <>
       <h1>Welcome to Search</h1>
+      <button onClick={() => navigate("/bookshelf")}>Bookshelf</button>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
