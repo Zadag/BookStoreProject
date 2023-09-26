@@ -28,9 +28,9 @@ const SignIn: React.FC = () => {
     else setErrorMessage(response);
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    verifyCredentials();
+    await verifyCredentials();
   };
 
   return (
